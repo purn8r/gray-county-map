@@ -200,10 +200,10 @@ function findLayers(map) {
   }
 
   let x=findLayers(map)
-    // .map(line => {
-    //   return line.feature
-    // })
-  let y = JSON.stringify(x)
+    .map(line => {
+      return line._latlngs
+    })
+  let y = null//JSON.stringify(x)
   console.log(x,y)
 }
 </script>

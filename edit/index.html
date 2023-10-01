@@ -5,14 +5,19 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
     crossorigin=""/>
+    <link
+  rel="stylesheet"
+  href="../leaflet-geoman.css"
+/>
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
     crossorigin=""></script>
-    <script src="Leaflet.LabelTextCollision.js"></script>
-    <script src="Canvas-TextPath.js"></script>
-    <script src="Leaflet.streetlabels.js"></script>
-    <script src="roads.js"></script>
+    <script src="../Leaflet.geoman.min.js"></script>
+    <script src="../Leaflet.LabelTextCollision.js"></script>
+    <script src="../Canvas-TextPath.js"></script>
+    <script src="../Leaflet.streetlabels.js"></script>
+    <script src="../roads.js"></script>
 </head>
   
 <body>
@@ -32,6 +37,7 @@ html, body {
 <div id="map"></div>
 
 <script>
+L.PM.setOptIn(false);
 
 // var streetLabelsRenderer = new L.StreetLabels({
 //       //color : "#ff0000",
@@ -108,11 +114,22 @@ function onEachFeature(feature, layer) {
 // Add map, set default view
 var map = L.map('map', {
     crs: L.CRS.Simple,
+    pmIgnore: false,
     minZoom: -1,
     center: [0,0],
     // renderer: streetLabelsRenderer,
     layers: [dataset],
 }).setView([-300,500], 0);
+map.on("pm:create", (e) => {
+  e.layer.options.pmIgnore = false;
+  L.PM.reInitLayer(e.layer);
+});
+
+map.pm.addControls({  
+  position: 'topleft',  
+  drawCircleMarker: false,
+  rotateMode: false,
+});  
 
 // Add tile layer
 var t = L.tileLayer('tiles/{z}/{x}/{y}.png', {
@@ -150,6 +167,44 @@ map.on('click', onMapClick);
 */
 //
 
+function exporter() {
+  function generateGeoJson(){
+    var fg = L.featureGroup();    
+    var layers = findLayers(map);
+        layers.forEach(function(layer){
+        fg.addLayer(layer);
+         });
+    console.log(fg.toGeoJSON());
+}
+
+function findLayers(map) {
+    var layers = [];
+    map.eachLayer(layer => {
+      if (
+        layer instanceof L.Polyline || //Don't worry about Polygon and Rectangle they are included in Polyline
+        layer instanceof L.Marker ||
+        layer instanceof L.Circle ||
+        layer instanceof L.CircleMarker
+      ) {
+        layers.push(layer);
+      }
+    });
+
+    // filter out layers that don't have the leaflet-geoman instance
+    layers = layers.filter(layer => !!layer.pm);
+
+    // filter out everything that's leaflet-geoman specific temporary stuff
+    layers = layers.filter(layer => !layer._pmTempLayer);
+
+    return layers;
+  }
+
+  let x=findLayers(map).map(line => {
+    return line.feature
+  })
+  let y = JSON.stringify(x)
+  console.log(x,y)
+}
 </script>
 
 </body>

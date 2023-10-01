@@ -42,7 +42,7 @@ var roads = {
               },
               {
                 "type": "Feature",
-                "properties": {},
+                "properties": {"name": "long test"},
                 "geometry": {
                   "type": "LineString",
                   "coordinates": [

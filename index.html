@@ -38,6 +38,7 @@ html, body {
 
 <script>
 L.PM.setOptIn(false);
+
 // var streetLabelsRenderer = new L.StreetLabels({
 //       //color : "#ff0000",
 //       collisionFlg : true,
@@ -123,6 +124,13 @@ map.on("pm:create", (e) => {
   e.layer.options.pmIgnore = false;
   L.PM.reInitLayer(e.layer);
 });
+
+map.pm.addControls({  
+  position: 'topleft',  
+  drawCircleMarker: false,
+  rotateMode: false,
+});  
+
 // Add tile layer
 var t = L.tileLayer('tiles/{z}/{x}/{y}.png', {
     noWrap: true,

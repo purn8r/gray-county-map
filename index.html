@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Gray County Map</title>
+    <link rel="icon" type="image/x-icon" href="/assets/icon.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
     crossorigin=""/>
@@ -133,7 +134,8 @@ var t = L.tileLayer('tiles/{z}/{x}/{y}.png', {
     maxNativeZoom: 3,
     minZoom: -1,
     maxZoom: 5,
-    bounds: [[0,0],[-864,1020]]
+    bounds: [[0,0],[-864,1020]],
+    attribution: "purn8r"
 }).addTo(map);
 
 L.control.layers({ "Satellite": t /*only 1 can be picked from here, separate with ;*/}, { "Roads": dataset /*can toggle any number, separate with ;*/}).addTo(map)

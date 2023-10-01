@@ -174,7 +174,8 @@ function exporter() {
         layers.forEach(function(layer){
         fg.addLayer(layer);
          });
-    console.log(fg.toGeoJSON());
+    console.log(JSON.stringify(fg.toGeoJSON()));
+    return fg.toGeoJSON()
 }
 
 function findLayers(map) {
@@ -198,13 +199,6 @@ function findLayers(map) {
 
     return layers;
   }
-
-  let x=findLayers(map)
-    .map(line => {
-      return line._latlngs
-    })
-  let y = JSON.stringify(x)
-  console.log(x,y)
 }
 </script>
 

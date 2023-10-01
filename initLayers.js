@@ -6,11 +6,6 @@ async function importFile(filePath) {
     return (await import(filePath))?.default
 }
 
-var dataset = L.geoJSON(roads, {
-    onEachFeature: onEachFeature,
-    //color: color: "#ff0000"
-})
-
 function onEachFeature(feature, layer) {
     // do something with the features here (bind popups, etc.)
     /*

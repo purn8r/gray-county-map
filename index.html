@@ -33,6 +33,15 @@ html, body {
 
 <script>
 
+const defaultStyle = {
+    weight: 2,
+    color: '#637081',
+    dashArray: '',
+    fillOpacity: 1,
+    opacity: .5
+  }
+
+  
 var streetLabelsRenderer = new L.StreetLabels({
       //color : "#ff0000",
       collisionFlg : true,
@@ -60,13 +69,6 @@ var dataset = L.geoJSON(roads, {
   //color: color: "#ff0000"
 })
 
-const defaultStyle = {
-    weight: 2,
-    color: '#637081',
-    dashArray: '',
-    fillOpacity: 1,
-    opacity: .5
-  }
 
 function highlightFeature(e) {
   var layer = e.target;

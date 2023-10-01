@@ -192,6 +192,7 @@ L.StreetLabels = L.LabelTextCollision.extend({
         }
       }
       var layerText = layer.feature.properties[this.options.propertyName];
+      if (layerText == undefined) {layerText = ""}
       ctx.globalAlpha = 1;
       var p;
       if (layer._parts.length === 0 || layer._parts[0].length === 0) {

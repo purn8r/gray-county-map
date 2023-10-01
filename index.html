@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Gray County Map</title>
-    <link rel="icon" type="image/x-icon" href="/assets/icon.png">
+    <link rel="icon" type="image/x-icon" href="assets/icon.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
     crossorigin=""/>
@@ -33,7 +33,7 @@ html, body {
 <div id="map"></div>
 
 <script>
-import {register} from "initLayers.js"
+let register = require("initLayers.js").register
 // const defaultStyle = {
 //   weight: 2,
 //   color: '#637081',

@@ -60,6 +60,14 @@ var dataset = L.geoJSON(roads, {
   //color: color: "#ff0000"
 })
 
+const defaultStyle = {
+    weight: 2,
+    color: '#637081',
+    dashArray: '',
+    fillOpacity: 1,
+    opacity: .5
+  }
+
 function highlightFeature(e) {
   var layer = e.target;
 
@@ -81,13 +89,7 @@ function resetHighlight(e) {
   dataset.resetStyle(e.target);
 	var layer = e.target;
 
-  layer.setStyle({
-    weight: 2,
-    color: '#637081',
-    dashArray: '',
-    fillOpacity: 1,
-    opacity: .5
-  });
+  layer.setStyle(defaultStyle);
 }
 
 function onEachFeature(feature, layer) {
@@ -99,6 +101,7 @@ function onEachFeature(feature, layer) {
     fillOpacity: 0,
   })
   */
+  layer.setStyle(defaultStyle)
 
   layer.on({
     mouseover: highlightFeature,

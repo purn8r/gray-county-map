@@ -167,7 +167,44 @@ map.on('click', onMapClick);
 */
 //
 
+function exporter() {
+  function generateGeoJson(){
+    var fg = L.featureGroup();    
+    var layers = findLayers(map);
+        layers.forEach(function(layer){
+        fg.addLayer(layer);
+         });
+    console.log(fg.toGeoJSON());
+}
 
+function findLayers(map) {
+    var layers = [];
+    map.eachLayer(layer => {
+      if (
+        layer instanceof L.Polyline || //Don't worry about Polygon and Rectangle they are included in Polyline
+        layer instanceof L.Marker ||
+        layer instanceof L.Circle ||
+        layer instanceof L.CircleMarker
+      ) {
+        layers.push(layer);
+      }
+    });
+
+    // filter out layers that don't have the leaflet-geoman instance
+    layers = layers.filter(layer => !!layer.pm);
+
+    // filter out everything that's leaflet-geoman specific temporary stuff
+    layers = layers.filter(layer => !layer._pmTempLayer);
+
+    return layers;
+  }
+
+  let x=findLayers(map).map(line => {
+    return line.feature
+  })
+  let y = JSON.stringify(x)
+  console.log(x,y)
+}
 </script>
 
 </body>

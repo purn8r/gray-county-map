@@ -14,10 +14,10 @@
     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
     crossorigin=""></script>
     <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script>
-    <!-- <script src="Leaflet.LabelTextCollision.js"></script>
+    <script src="Leaflet.LabelTextCollision.js"></script>
     <script src="Canvas-TextPath.js"></script>
     <script src="Leaflet.streetlabels.js"></script>
-    <script src="roads.js"></script> -->
+    <script src="roads.js"></script>
 </head>
   
 <body>
@@ -113,6 +113,7 @@ function onEachFeature(feature, layer) {
 // Add map, set default view
 var map = L.map('map', {
     crs: L.CRS.Simple,
+    pmIgnore: false,
     minZoom: -1,
     center: [0,0],
     renderer: streetLabelsRenderer,

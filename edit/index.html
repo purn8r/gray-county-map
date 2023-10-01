@@ -199,9 +199,10 @@ function findLayers(map) {
     return layers;
   }
 
-  let x=findLayers(map).map(line => {
-    return line.feature
-  })
+  let x=findLayers(map)
+    // .map(line => {
+    //   return line.feature
+    // })
   let y = JSON.stringify(x)
   console.log(x,y)
 }

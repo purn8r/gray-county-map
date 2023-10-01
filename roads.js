@@ -15,7 +15,9 @@ var roads = {
             "features": [
               {
                 "type": "Feature",
-                "properties": {},
+                "properties": {
+                  "name": "test"
+                },
                 "geometry": {
                   "type": "LineString",
                   "coordinates": [

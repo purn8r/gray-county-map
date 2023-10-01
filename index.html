@@ -33,26 +33,26 @@ html, body {
 
 <script>
 
-// var streetLabelsRenderer = new L.StreetLabels({
-//       //color : "#ff0000",
-//       collisionFlg : true,
-//       propertyName : 'name',
-//       showLabelIf: function(layer) {
-//         return true; //layer.properties.type == "primary";
-//       },
-//       fontStyle: {
-//         //color : "#ff0000",
-//         dynamicFontSize: false,
-//         fontSize: 15, // was 15
-//         fontSizeUnit: "px",
-//         lineWidth: 4.0, // was 4.0
-//         fillStyle: "black",
-//         strokeStyle: "white",
-//       },
-//       //lineStyle: {
-//         //color: "#ff0000",
-//       //}
-//     })
+var streetLabelsRenderer = new L.StreetLabels({
+      //color : "#ff0000",
+      collisionFlg : true,
+      propertyName : 'name',
+      showLabelIf: function(layer) {
+        return true; //layer.properties.type == "primary";
+      },
+      fontStyle: {
+        //color : "#ff0000",
+        dynamicFontSize: false,
+        fontSize: 15, // was 15
+        fontSizeUnit: "px",
+        lineWidth: 4.0, // was 4.0
+        fillStyle: "black",
+        strokeStyle: "white",
+      },
+      //lineStyle: {
+        //color: "#ff0000",
+      //}
+    })
 
 // Load the dataset
 var dataset = L.geoJSON(roads, {
@@ -82,10 +82,11 @@ function resetHighlight(e) {
 	var layer = e.target;
 
   layer.setStyle({
-    weight: 4,
+    weight: 2,
     color: '#637081',
     dashArray: '',
-    fillOpacity: .1
+    fillOpacity: 1,
+    opacity: .1
   });
 }
 
@@ -110,7 +111,7 @@ var map = L.map('map', {
     crs: L.CRS.Simple,
     minZoom: -1,
     center: [0,0],
-    // renderer: streetLabelsRenderer,
+    renderer: streetLabelsRenderer,
     layers: [dataset],
 }).setView([-300,500], 0);
 

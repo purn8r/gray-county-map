@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "blob": "^0.1.0"
+    "glob": "^10.3.10"
   }
 }

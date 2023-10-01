@@ -14,6 +14,9 @@
     <script src="Canvas-TextPath.js"></script>
     <script src="Leaflet.streetlabels.js"></script>
     <script src="roads.js"></script>
+    <script>
+    import {register} from "initLayers.js"
+    </script>
 </head>
   
 <body>
@@ -117,13 +120,17 @@ function onEachFeature(feature, layer) {
   });
 }
 
+
+let registered = register()
+
+
 // Add map, set default view
 var map = L.map('map', {
     crs: L.CRS.Simple,
     minZoom: -1,
     center: [0,0],
     renderer: streetLabelsRenderer,
-    layers: [dataset],
+    layers: registered.datasets,
 }).setView([-300,500], 0);
 
 // Add tile layer
@@ -138,7 +145,7 @@ var t = L.tileLayer('tiles/{z}/{x}/{y}.png', {
     attribution: "purn8r"
 }).addTo(map);
 
-L.control.layers({ "Satellite": t /*only 1 can be picked from here, separate with ;*/}, { "Roads": dataset /*can toggle any number, separate with ;*/}).addTo(map)
+L.control.layers({ "Satellite": t /*only 1 can be picked from here, separate with ;*/}, registered.mappedLayers).addTo(map)
 
 // for testing
 /*

@@ -135,6 +135,7 @@ function onEachFeature(feature, layer) {
   })
   */
   layer.setStyle(defaultStyle)
+  layer.redraw()
 
   layer.on({
     click: onClick,

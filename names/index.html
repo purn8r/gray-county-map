@@ -100,6 +100,11 @@ function resetHighlight(e) {
   layer.setStyle(defaultStyle);
 }
 
+function onClick(e) {
+  let newName = prompt("Enter street name", e.target.properties.name || "")
+
+}
+
 function onEachFeature(feature, layer) {
   // do something with the features here (bind popups, etc.)
   /*
@@ -162,7 +167,41 @@ async function onMapClick(e) {
 map.on('click', onMapClick);
 */
 //
+function exporter() {
+  function generateGeoJson(){
+    var fg = L.featureGroup();    
+    var layers = findLayers(map);
+        layers.forEach(function(layer){
+        fg.addLayer(layer);
+         });
+    console.log(JSON.stringify(fg.toGeoJSON()));
+    return fg.toGeoJSON()
+  }
 
+  function findLayers(map) {
+    var layers = [];
+    map.eachLayer(layer => {
+      if (
+        layer instanceof L.Polyline || //Don't worry about Polygon and Rectangle they are included in Polyline
+        layer instanceof L.Marker ||
+        layer instanceof L.Circle ||
+        layer instanceof L.CircleMarker
+      ) {
+        layers.push(layer);
+      }
+    });
+
+    // filter out layers that don't have the leaflet-geoman instance
+    layers = layers.filter(layer => !!layer.pm);
+
+    // filter out everything that's leaflet-geoman specific temporary stuff
+    layers = layers.filter(layer => !layer._pmTempLayer);
+
+    return layers;
+  }
+
+  generateGeoJson()
+}
 </script>
 
 </body>

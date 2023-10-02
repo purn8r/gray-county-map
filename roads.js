@@ -1,8 +1,8 @@
 // COORDINATES ARE IN THE FORM (y,x) FOR SOME STRANGE REASON
 
-export default {
+var roads = {
     "type":"FeatureCollection",
-    "name":"Roads",
+    "name":"roads",
     //"color": "ff0000", doesn't work
     "features": [
         /*

@@ -109,12 +109,18 @@ function resetHighlight(e) {
   dataset.resetStyle(e.target);
 	var layer = e.target;
 
-  if (layer.feature.properties.name=="") {layer.setStyle(unnamedStyle)} else {layer.setStyle(defaultStyle)}
+  if (layer.feature.properties.name==""||layer.feature.properties.name==null) {
+    layer.setStyle(unnamedStyle)
+  } else {
+    layer.setStyle(defaultStyle)
+  }
+  layer.redraw()
 }
 
 function onClick(e) {
   let newName = prompt("Enter street name", e.target.feature.properties.name || "")
   e.target.feature.properties.name = newName || ""
+  if (layer.feature.properties.name=="") {layer.setStyle(unnamedStyle)} else {layer.setStyle(defaultStyle)}
   e.target.redraw()
   // console.log(e.target)
 }

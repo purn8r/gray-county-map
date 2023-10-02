@@ -1,4 +1,4 @@
-import { glob } from "node_modules\\glob\\dist\\esm\\glob.js";
+import { glob } from "./node_modules\\glob\\dist\\esm\\glob.js";
 const globPromise = promisify(glob)
 
 

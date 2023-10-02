@@ -101,8 +101,10 @@ function resetHighlight(e) {
 }
 
 function onClick(e) {
-  // let newName = prompt("Enter street name", e.target.properties.name || "")
-  console.log(e.target)
+  let newName = prompt("Enter street name", e.target.feature.properties.name || "")
+  e.target.feature.properties.name = newName || ""
+
+  // console.log(e.target)
 }
 
 function onEachFeature(feature, layer) {

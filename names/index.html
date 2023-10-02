@@ -120,8 +120,13 @@ function resetHighlight(e) {
 function onClick(e) {
   let newName = prompt("Enter street name", e.target.feature.properties.name || "")
   e.target.feature.properties.name = newName || ""
-  if (layer.feature.properties.name=="") {layer.setStyle(unnamedStyle)} else {layer.setStyle(defaultStyle)}
-  e.target.redraw()
+  let layer = e.target
+  if (layer.feature.properties.name==""||layer.feature.properties.name==null) {
+    layer.setStyle(unnamedStyle)
+  } else {
+    layer.setStyle(defaultStyle)
+  }
+  layer.redraw()
   // console.log(e.target)
 }
 
@@ -134,7 +139,11 @@ function onEachFeature(feature, layer) {
     fillOpacity: 0,
   })
   */
-  layer.setStyle(defaultStyle)
+  if (layer.feature.properties.name==""||layer.feature.properties.name==null) {
+    layer.setStyle(unnamedStyle)
+  } else {
+    layer.setStyle(defaultStyle)
+  }
   layer.redraw()
 
   layer.on({

@@ -103,7 +103,7 @@ function resetHighlight(e) {
 function onClick(e) {
   let newName = prompt("Enter street name", e.target.feature.properties.name || "")
   e.target.feature.properties.name = newName || ""
-
+  e.target.redraw()
   // console.log(e.target)
 }
 

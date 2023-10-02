@@ -177,9 +177,9 @@ function exporter() {
          });
     console.log(JSON.stringify(fg.toGeoJSON()));
     return fg.toGeoJSON()
-}
+  }
 
-function findLayers(map) {
+  function findLayers(map) {
     var layers = [];
     map.eachLayer(layer => {
       if (
@@ -200,6 +200,8 @@ function findLayers(map) {
 
     return layers;
   }
+
+  generateGeoJson()
 }
 </script>
 

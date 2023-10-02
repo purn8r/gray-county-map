@@ -27,13 +27,20 @@ html, body {
 	outline-offset: 1px;
 }
 
-#export-container {height: 2.5%; position: absolute; top: 4px; left: 40px;z-index: 400;}
+#export-container {height: 2.5%; position: absolute; top: 4px; left: 40px;z-index: 400; display: flex;margin-left: 2px;}
 #map { height: 100%; }
+.exporter {
+  font-size: 5px;
+  color:hotpink;
+}
+
 </style>
 
 <div id="map"></div>
 <div id="export-container">
-  <button id="export-button"onClick="exporter()">Export</button><p id="export-text"></p>
+  <button id="export-button"onClick="exporter()">Export</button>
+  <button id="clear-export-button"onClick="clearExporter()">Clear</button>
+  <p id="export-text" class="exporter"></p>
 </div>
 
 
@@ -183,6 +190,8 @@ function exporter() {
         fg.addLayer(layer);
          });
     console.log(JSON.stringify(fg.toGeoJSON()));
+    document.getElementById("export-text").textContent = JSON.stringify(fg.toGeoJSON())
+
     return fg.toGeoJSON()
   }
 
@@ -210,6 +219,8 @@ function exporter() {
 
   generateGeoJson()
 }
+
+function clearExporter() {document.getElementById("export-text").textContent =""}
 </script>
 
 </body>

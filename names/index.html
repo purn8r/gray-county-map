@@ -46,14 +46,14 @@ html, body {
 
 <script>
 
-// const defaultStyle = {
-//   weight: 2,
-//   color: '#637081',
-//   dashArray: '',
-//   fillOpacity: 1,
-//   opacity: .5
-// }
 const defaultStyle = {
+  weight: 2,
+  color: '#637081',
+  dashArray: '',
+  fillOpacity: 1,
+  opacity: .5
+}
+const unnamedStyle = {
     weight: 4,
     color: '#3388ff',
     dashArray: '',
@@ -109,7 +109,7 @@ function resetHighlight(e) {
   dataset.resetStyle(e.target);
 	var layer = e.target;
 
-  layer.setStyle(defaultStyle);
+  if (layer.feature.properties.name=="") {layer.setStyle(unnamedStyle)} else {layer.setStyle(defaultStyle)}
 }
 
 function onClick(e) {
@@ -128,7 +128,7 @@ function onEachFeature(feature, layer) {
     fillOpacity: 0,
   })
   */
-  layer.setStyle(defaultStyle)
+  if (layer.feature.properties.name=="") {layer.setStyle(unnamedStyle)} else {layer.setStyle(defaultStyle)}
 
   layer.on({
     click: onClick,

@@ -1,4 +1,4 @@
-{
+data.push({
   "layerName": "Roads",
   "type": "FeatureCollection",
   "features": [
@@ -2992,4 +2992,4 @@
       }
     }
   ]
-}
+})

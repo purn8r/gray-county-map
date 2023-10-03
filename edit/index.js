@@ -1,5 +1,28 @@
 L.PM.setOptIn(false);
 
+const defaultStyle = {
+  weight: 2,
+  color: '#637081',
+  dashArray: '',
+  fillOpacity: 1,
+  opacity: .5
+}
+const blueStyle = {
+  weight: 4,
+  color: '#3388ff',
+  dashArray: '',
+  fillOpacity: 1
+}
+
+const hoverStyle = {
+  stroke: true,
+  weight: 8,
+  dashArray: '',
+  opacity: 0.5,
+  color: '#ff3300'
+
+}
+
 // var streetLabelsRenderer = new L.StreetLabels({
 //       //color : "#ff0000",
 //       collisionFlg : true,
@@ -25,14 +48,7 @@ L.PM.setOptIn(false);
 function highlightFeature(e) {
   var layer = e.target;
 
-  layer.setStyle({
-    stroke: true,
-    weight: 8,
-    dashArray: '',
-    opacity: 0.5,
-    color: '#ff3300'
-
-  });
+  layer.setStyle(hoverStyle);
 
   if (!L.Browser.ie && !L.Browser.opera) {
     layer.bringToFront();
@@ -42,12 +58,7 @@ function highlightFeature(e) {
 function resetHighlight(e) {
   var layer = e.target;
 
-  layer.setStyle({
-    weight: 4,
-    color: '#637081',
-    dashArray: '',
-    fillOpacity: .1
-  });
+  layer.setStyle(defaultStyle);
 }
 
 function onEachFeature(feature, layer) {
@@ -59,6 +70,7 @@ function onEachFeature(feature, layer) {
     fillOpacity: 0,
   })
   */
+  layer.setStyle(defaultStyle)
 
   layer.on({
     mouseover: highlightFeature,

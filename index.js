@@ -1,16 +1,10 @@
 
-// const defaultStyle = {
-//   weight: 2,
-//   color: '#637081',
-//   dashArray: '',
-//   fillOpacity: 1,
-//   opacity: .5
-// }
 const defaultStyle = {
-    weight: 4,
-    color: '#3388ff',
+    weight: 2,
+    color: '#637081',
     dashArray: '',
-    fillOpacity: 1
+    fillOpacity: 1,
+    opacity: .5
 }
 
 var streetLabelsRenderer = new L.StreetLabels({
@@ -83,8 +77,8 @@ data.forEach(json => {
         //color: color: "#ff0000"
     })
     datasets.push(dataset)
-    layerList = {...layerList, [json.layerName]:dataset}
-    
+    layerList = { ...layerList, [json.layerName]: dataset }
+
 })
 
 // Load the dataset

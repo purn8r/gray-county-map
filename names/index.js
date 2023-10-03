@@ -4,13 +4,14 @@ const defaultStyle = {
   color: '#637081',
   dashArray: '',
   fillOpacity: 1,
-  opacity: .5
+  opacity: 1
 }
 const unnamedStyle = {
   weight: 4,
   color: '#3388ff',
   dashArray: '',
-  fillOpacity: 1
+  fillOpacity: 1,
+  Opacity: 1
 }
 
 var streetLabelsRenderer = new L.StreetLabels({
@@ -42,7 +43,7 @@ function highlightFeature(e) {
     stroke: true,
     weight: 8,
     dashArray: '',
-    opacity: 0.6,
+    opacity: 1,
     color: '#ff3300'
 
   });
@@ -53,7 +54,7 @@ function highlightFeature(e) {
 }
 
 function resetHighlight(e) {
-  dataset.resetStyle(e.target);
+  // dataset.resetStyle(e.target);
   var layer = e.target;
 
   if (layer.feature.properties.name == "" || layer.feature.properties.name == null) {

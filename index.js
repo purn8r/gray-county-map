@@ -104,26 +104,3 @@ var t = L.tileLayer('tiles/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 L.control.layers({ "Satellite": t /*only 1 can be picked from here, separate with ;*/}, { "Roads": dataset /*can toggle any number, separate with ;*/}).addTo(map)
-
-// for testing
-/*
-var popup = L.popup();
-let listString = ""
-let debounce = false
-
-async function onMapClick(e) {
-    if (debounce === false) {
-        debounce = true
-        let initialCoords = e.latlng.toString().split("(")[1].split(")")[0]
-        const splitted = initialCoords.split(", ")
-        initialCoords = "[" + splitted[1] + ", " + splitted[0] + "], "
-        listString = listString + initialCoords
-        console.log(listString)       
-        await new Promise(resolve => setTimeout(resolve, 100))
-        debounce = false
-    }
-    
-}
-map.on('click', onMapClick);
-*/
-//

@@ -40,7 +40,6 @@ function highlightFeature(e) {
 }
 
 function resetHighlight(e) {
-  dataset.resetStyle(e.target);
   var layer = e.target;
 
   layer.setStyle({

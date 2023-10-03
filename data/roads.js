@@ -1,7 +1,5 @@
-// COORDINATES ARE IN THE FORM (y,x) FOR SOME STRANGE REASON
-// TO ADD STREET NAMES MANUALLY ADD `"name": "streetname"` to the properties
-
-var roads = {
+data.push({
+  "layerName": "Roads",
   "type": "FeatureCollection",
   "features": [
     {
@@ -2994,4 +2992,4 @@ var roads = {
       }
     }
   ]
-}
+})

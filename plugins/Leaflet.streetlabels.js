@@ -266,17 +266,16 @@ L.StreetLabels = L.LabelTextCollision.extend({
     }
   },
   _getBearing: function (startCoords, stopCoords) {
-    var rad = Math.PI / 180,
-      lat1 = startCoords.lat * rad,
-      lat2 = stopCoords.lat * rad,
-      lon1 = startCoords.lng * rad,
-      lon2 = stopCoords.lng * rad,
-      y = Math.sin(lon2 - lon1) * Math.cos(lat2),
-      x =
-        Math.cos(lat1) * Math.sin(lat2) -
-        Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);
-    var bearing = ((Math.atan2(y, x) * 180) / Math.PI + 360) % 360;
-    return bearing >= 180 ? bearing - 360 : bearing;
+    var lat1 = startCoords.lat,
+      lat2 = stopCoords.lat,
+      lon1 = startCoords.lng,
+      lon2 = stopCoords.lng,
+      latDiff = lat2-lat1,
+      lonDiff = lon2-lon1
+      
+    var bearing = Math.atan2(latDiff,lonDiff)*180/Math.PI
+    if (bearing >= 180) {bearing = bearing-180}
+    return bearing //>= 180 ? bearing + 180 : bearing;
   },
   _getLineStringReverse: function (polyline) {
     var latLngs = polyline.getLatLngs().slice(0).reverse();

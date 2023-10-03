@@ -47,6 +47,7 @@ CanvasRenderingContext2D.prototype.textPath = function (text, path)
 {	// Helper to get a point on the path, starting at dl 
 	// (return x, y and the angle on the path)
 	var di, dpos=0;
+	var directionOverwrite = 0
 	var pos=2;
 	function pointAt(dl)
 	{	if (!di || dpos+di<dl)
@@ -84,6 +85,8 @@ CanvasRenderingContext2D.prototype.textPath = function (text, path)
 	}
 	if (d < this.minWidth) return;
 	var nbspace = text.split(" ").length -1;
+	let p1 = pointAt(d/2)
+	if (p1[2]>Math.PI/2 || p1[2]< -Math.PI/2) {directionOverwrite=Math.PI; text = text.split("").reverse().join("")}
 
 	// Remove char for overflow
 	if (this.textOverflow != "visible")
@@ -131,7 +134,7 @@ CanvasRenderingContext2D.prototype.textPath = function (text, path)
 		this.save();
 		this.textAlign = "center";
 		this.translate(p[0], p[1]);
-		this.rotate(p[2]);
+		this.rotate(p[2]-directionOverwrite);
 		if (this.lineWidth>0.1) this.strokeText(letter,0,0);
 		this.fillText(letter,0,0);
 		this.restore();
